@@ -24,6 +24,7 @@ void*   threadfunc(void*);
 int main(int argc, char* argv[]) {
 
 	long thread_index;
+	int i;
 	double start, end;
 
 	check_usage(argc);
@@ -35,6 +36,11 @@ int main(int argc, char* argv[]) {
 	Lab1_loadinput( &matrix_a,
 			&matrix_b,
 			&matrix_size );
+
+	matrix_c = malloc( matrix_size * sizeof *matrix_c);
+
+	for (i = 0; i < matrix_size; i++)
+		matrix_c[i] = malloc( matrix_size * sizeof *matrix_c[i]);
 
 	GET_TIME(start);
 	for (thread_index = 0; thread_index < number_of_threads; thread_index++)
