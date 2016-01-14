@@ -12,4 +12,4 @@
 # 	$(RM) $(TARGET)
 
 all:
-	gcc -g -Wall -o main src/main.c -lm -lpthread
+	gcc -g -Wall -o main src/main.c src/lab1_IO.c -lm -lpthread

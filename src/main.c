@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include <math.h>
 
-#include "../lib/lab1_IO.h"
+#include "lab1_IO.h"
 
 // Global variables
 int*** matrix_a;
@@ -31,9 +31,9 @@ int main(int argc, char* argv[]) {
 				threadfunc,
 				(void*) thread_index );
 
-	Lab1_loadinput( matrix_a,
-			matrix_b,
-			matrix_size );
+	int a = Lab1_loadinput( matrix_a,
+				matrix_b,
+				matrix_size );
 
 	for (thread_index = 0; thread_index < number_of_threads; thread_index++)
 		pthread_join( thread_handles[thread_index], NULL );
