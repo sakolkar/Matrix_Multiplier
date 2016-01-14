@@ -15,7 +15,7 @@ end-start
 #ifndef _TIMER_H_
 #define _TIMER_H_
 
-#include <sys/time.h>
+#include <time.h>
 
 #define GET_TIME(now) { \
    struct timeval t; \
