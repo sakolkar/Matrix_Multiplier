@@ -32,3 +32,7 @@ main
 
 # Debug files
 *.dSYM/
+
+# VIM temporary files
+*.swp
+*.swo
