@@ -75,8 +75,8 @@ void* threadfunc(void* arg_p) {
 	int lower_bound_y = get_lower_bound(get_y(rank));
 	int upper_bound_y = get_upper_bound(get_y(rank));
 	int i = 0, j = 0, k = 0;
-	for (i = lower_bound_x; i < upper_bound_x; i++) {
-		for(j = lower_bound_y; j < upper_bound_y; j++) {
+	for (i = lower_bound_x; i <= upper_bound_x; i++) {
+		for(j = lower_bound_y; j <= upper_bound_y; j++) {
 			matrix_c[i][j] = 0;
 			for (k = 0; k < matrix_size; k++)
 				matrix_c[i][j] +=   matrix_a[i][k]

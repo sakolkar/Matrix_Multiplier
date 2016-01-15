@@ -40,7 +40,7 @@ int Lab1_loadinput(int ***A, int ***B, int *n)
     *A = malloc(*n * sizeof(int*));
     *B = malloc(*n * sizeof(int*));
 
-    for (i = 0; i <= *n; i++)
+    for (i = 0; i < *n; i++)
     {
       (*A)[i] = malloc(*n * sizeof(int));
       (*B)[i] = malloc(*n * sizeof(int));
@@ -59,14 +59,14 @@ int Lab1_loadinput(int ***A, int ***B, int *n)
 int Lab1_saveoutput(int **C, int *n, double Time)
 {
 /*
-    Save the data to the file for Lab 1 
+    Save the data to the file for Lab 1
 
     -----
     Input:
-    int **C     pointer to the result matrix 
+    int **C     pointer to the result matrix
     int *n      pointer to the matrix size
     double Time measure calulation time
-    
+
     -----
     Output:
     data_output the stored data
@@ -96,4 +96,3 @@ int Lab1_saveoutput(int **C, int *n, double Time)
     fclose(op);
     return 0;
 }
- 
