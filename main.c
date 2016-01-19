@@ -40,24 +40,28 @@ int main(int argc, char* argv[]) {
 			&matrix_size );
 
 	matrix_c = malloc( matrix_size * sizeof *matrix_c);
-
-	for (i = 0; i < matrix_size; i++)
+	for(i = 0; i < matrix_size; i++)
 		matrix_c[i] = malloc( matrix_size * sizeof *matrix_c[i]);
 
 	GET_TIME(start);
-	for (thread_index = 0; thread_index < number_of_threads; thread_index++)
+
+	for(thread_index=0; thread_index < number_of_threads; thread_index++)
 		pthread_create( &thread_handles[thread_index],
 				NULL,
 				threadfunc,
 				(void*) thread_index );
 
-	for (thread_index = 0; thread_index < number_of_threads; thread_index++)
+	for(thread_index=0; thread_index < number_of_threads; thread_index++)
 		pthread_join( thread_handles[thread_index], NULL );
-	GET_TIME(end);
 
+	GET_TIME(end);
 	Lab1_saveoutput( matrix_c, &matrix_size, (end-start) );
+
+	for(i = 0; i < number_of_threads; i++) {
+		free(matrix_a[i]); free(matrix_b[i]); free(matrix_c[i]);
+	}
+	free(matrix_a); free(matrix_b); free(matrix_c);
 	free(thread_handles);
-	// TODO: free inner matrix elements
 
 	exit(EXIT_SUCCESS);
 }
@@ -80,21 +84,23 @@ void check_usage(int argc) {
 
 void* threadfunc(void* arg_p) {
 	long rank = (long) arg_p;
+
 	int lower_bound_x = get_lower_bound(get_x(rank));
 	int upper_bound_x = get_upper_bound(get_x(rank));
 	int lower_bound_y = get_lower_bound(get_y(rank));
 	int upper_bound_y = get_upper_bound(get_y(rank));
+
 	int i = 0, j = 0, k = 0;
-	for (i = lower_bound_x; i <= upper_bound_x; i++) {
-		for(j = lower_bound_y; j <= upper_bound_y; j++) {
+	for(i = lower_bound_x; i <= upper_bound_x; i++) { 
+		for(j = lower_bound_y; j <= upper_bound_y; j++) { 
 			matrix_c[i][j] = 0;
-			for (k = 0; k < matrix_size; k++)
+			for(k = 0; k < matrix_size; k++) {
 				matrix_c[i][j] +=   matrix_a[i][k]
 						  * matrix_b[k][j];
+			}
 		}
 	}
 
-	printf("my rank: %ld\n", (long) arg_p); // TODO: get rid of me
 	return NULL;
 }
 
