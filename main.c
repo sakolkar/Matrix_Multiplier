@@ -57,7 +57,7 @@ int main(int argc, char* argv[]) {
 	GET_TIME(end);
 	Lab1_saveoutput( matrix_c, &matrix_size, (end-start) );
 
-	for(i = 0; i < number_of_threads; i++) {
+	for(i = 0; i < matrix_size; i++) {
 		free(matrix_a[i]); free(matrix_b[i]); free(matrix_c[i]);
 	}
 	free(matrix_a); free(matrix_b); free(matrix_c);
