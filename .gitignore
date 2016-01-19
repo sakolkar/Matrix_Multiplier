@@ -1,4 +1,6 @@
 main
+serialtester
+matrixgen
 
 # Object files
 *.o
