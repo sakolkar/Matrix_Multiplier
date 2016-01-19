@@ -14,12 +14,13 @@ int   matrix_size;
 int   number_of_threads; // p
 
 // function signatures
-void    check_usage(int);
-int     get_x(int);
-int     get_y(int);
-int     get_upper_bound(int);
-int     get_lower_bound(int);
-void*   threadfunc(void*);
+void  check_perfect_square(int);
+void  check_usage(int);
+int   get_lower_bound(int);
+int   get_upper_bound(int);
+int   get_x(int);
+int   get_y(int);
+void* threadfunc(void*);
 
 int main(int argc, char* argv[]) {
 
@@ -29,6 +30,7 @@ int main(int argc, char* argv[]) {
 
 	check_usage(argc);
 	number_of_threads = atoi(argv[1]);
+	check_perfect_square(number_of_threads);
 
 	pthread_t* thread_handles;
 	thread_handles = malloc( number_of_threads * sizeof *thread_handles );
@@ -57,7 +59,15 @@ int main(int argc, char* argv[]) {
 	free(thread_handles);
 	// TODO: free inner matrix elements
 
-	return 0;
+	exit(EXIT_SUCCESS);
+}
+
+void check_perfect_square(int number) {
+	if ( (sqrt(number) * sqrt(number)) == number )
+		return;
+
+	fprintf(stderr, "Threads should be a perfect square number.\n");
+	exit(EXIT_FAILURE);
 }
 
 void check_usage(int argc) {
