@@ -1,3 +1,7 @@
+# Information Sensitive files
+readme
+members
+
 # Object files
 *.o
 *.ko
