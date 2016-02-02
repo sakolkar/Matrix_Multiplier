@@ -1,6 +1,9 @@
+.gitignore
+
 # Information Sensitive files
 readme
 members
+1353583-H2.zip
 
 # Object files
 *.o
